@@ -47,7 +47,7 @@ let topMovies = [
   },
 ];
 
-// USE ans GET requests
+// USE and GET requests
 
 app.use(morgan('common'));
 
