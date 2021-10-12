@@ -1,10 +1,8 @@
-const express = require('express'),
-morgan = require('morgan'),
-bodyParser = require('body-parser');
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 const app = express();
-const bodyParser = require('body-parser'),
-  methodOverride = require('method-override');
 
 let topMovies = [
   {
@@ -49,25 +47,25 @@ let topMovies = [
   },
 ];
 
-// GET ans USE requests
+// USE ans GET requests
 
 app.use(morgan('common'));
+
+app.use('/documentation.html', express.static('public'));
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.send('Welcome to myFlix!');
 });
 
-app.use('/documentation.html', express.static('public'));
-
 app.get('/movies', (req, res) => {
   res.json(topMovies);
 });
-
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(bodyParser.json());
-app.use(methodOverride());
 
 // Error handler
 app.use((err, req, res, next) => {
