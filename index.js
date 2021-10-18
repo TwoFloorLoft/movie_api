@@ -70,8 +70,7 @@ app.get('/movies', (req, res) => {
 });
 
 app.get('/movies/:movieTitle', (req, res) => {
-  let movie = topMovies.find(m => m.title === req.params.movieTitle)
-  res.json(movie)
+  res.send('Successful GET request of a movie title.');
 }); 
 
 app.get('/genres/:genre', (req, res) => {
