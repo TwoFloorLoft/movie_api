@@ -7,43 +7,43 @@ const app = express();
 let topMovies = [
   {
     title: 'Dogtooth',
-    author: 'Yorgos Lanthimos'
+    director: 'Yorgos Lanthimos'
   },
   {
     title: 'Gummo',
-    author: 'Harmony Korine'
+    director: 'Harmony Korine'
   },
   {
     title: 'It Follows',
-    author: 'David Robert Mitchell'
+    director: 'David Robert Mitchell'
   },
   {
     title: 'Midsommar',
-    author: 'Ari Aster'
+    director: 'Ari Aster'
   },
   {
     title: 'Us',
-    author: 'Jordan Peele'
+    director: 'Jordan Peele'
   },
   {
     title: 'The Witch',
-    author: 'Robert Eggers'
+    director: 'Robert Eggers'
   },
   {
     title: 'The Blair Witch Project',
-    author: 'Eduardo Sánchez, Daniel Myrick'
+    director: 'Eduardo Sánchez, Daniel Myrick'
   },
   {
     title: 'The Craft',
-    author: 'Andrew Fleming'
+    director: 'Andrew Fleming'
   },
   {
     title: 'Clueless',
-    author: 'Amy Heckerling'
+    director: 'Amy Heckerling'
   },
   {
     title: 'Home Alone',
-    author: 'John Hughes'
+    director: 'John Hughes'
   },
 ];
 
