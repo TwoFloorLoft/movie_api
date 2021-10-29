@@ -18,50 +18,75 @@
   </thead>
 <tbody>
     <tr>
-        <td>GET request</td>
+        <td>GET</td>
         <td>/movies</td>
-        <td>return array of all movies</td>
+        <td>Return a list of all movies.</td>
     </tr>
     <tr>
-        <td>GET request</td>
-        <td>/movies/:movieTitle</td>
-        <td>return movie by it's title</td>
+        <td>GET</td>
+        <td>/genres</td>
+        <td>Return a list of all genres.</td>
     </tr>
     <tr>
-        <td>GET request</td>
-        <td>/genres/:genre</td>
-        <td>return info about a specific movie genre</td>
+        <td>GET</td>
+        <td>/genres/:Name</td>
+        <td>Return information of a specific genre.</td>
     </tr>
     <tr>
-        <td>GET request</td>
-        <td>/directors/:directorName</td>
-        <td>return info about movie directors</td>
+        <td>GET</td>
+        <td>/movies/:Title</td>
+        <td>Return movie by it's title.</td>
     </tr>
     <tr>
-        <td>POST request</td>
-        <td>/register</td>
-        <td>register to the system</td>
+        <td>GET</td>
+        <td>/movies/Genre/:Name</td>
+        <td>Return movies by genre.</td>
+      </tr>
+    <tr>
+        <td>GET</td>
+        <td>/directors</td>
+        <td>Return info about all directors.</td>
     </tr>
     <tr>
-        <td>PUT request</td>
-        <td>/users/:ID/:infoToUpdate/:newValue</td>
-        <td>Update the persons username info</td>
-    </tr>
-    <tr>
-        <td>POST request</td>
-        <td>/users/:ID/favorites/:newFavorite</td>
-        <td>Add a movie to a specific user's profile</td>
-    </tr>
-    <tr>
-        <td>DELETE request</td>
-        <td>/users/:id/unregister</td>
-        <td>Unregister a user from the database</td>
-    </tr>
-    <tr>
-        <td>DELETE request</td>
-        <td>/users/:ID/favorites/:deleteFavorite</td>
-        <td>Delete a favorite movie from the users favorites</td>
-    </tr>
+        <td>GET</td>
+        <td>/directors/:Name</td>
+        <td>Return a director's information by name.</td>
+      </tr>
+      <tr>
+        <td>GET</td>
+        <td>/users</td>
+        <td>Return a list of all users.</td>
+      </tr>
+      <tr>
+        <td>GET</td>
+        <td>/users/:Username</td>
+        <td>Return a user's information by username.</td>
+      </tr>
+      <tr>
+        <td>POST</td>
+        <td>/users</td>
+        <td>Add a new user.</td>
+      </tr>
+      <tr>
+        <td>PUT</td>
+        <td>/users/:Username</td>
+        <td>Allow user to update the user information</td>
+      </tr>
+      <tr>
+        <td>POST</td>
+        <td>/users/:Username/movies/:MovieID</td>
+        <td>Allow user to add a movie to the list of favorites.</td>
+      </tr>
+      <tr>
+        <td>DELETE</td>
+        <td>/users/:Username/movies/:MovieID</td>
+        <td>Allow user to remove a movie from the list of favorites.</td>
+      </tr>
+      <tr>
+        <td>DELETE</td>
+        <td>/users/:Username</td>
+        <td>Delete a Username</td>
+      </tr>
 </tbody></table>
 <script src="" async defer></script>
 </body>
