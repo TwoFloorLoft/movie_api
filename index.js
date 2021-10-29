@@ -76,15 +76,15 @@ app.get('/documentation.html', (req, res) => {
   });
 
   //Get list of all directors
-  app.get('/directors', (req, res) => {
+  app.get('/directors', function (req, res) {
     Directors.find()
-      .then((directors) => {
-        res.status(201).json(directors);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-      });
+    .then(function (directors) {
+      res.status(201).json(directors);
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.status(500).send('Error:' + err);
+    });
   });
 
    //Get all users
