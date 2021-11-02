@@ -7,13 +7,15 @@ const Models = require('./models.js');
 const app = express();
 const Movies = Models.Movie;
 const Users = Models.User;
-const Genres = Models.Genre;
-const Directors = Models.Director;
 
 mongoose.connect('mongodb://localhost:27017/MyFlix', { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
 
 // USE and GET requests
 
@@ -28,26 +30,26 @@ app.get('/documentation.html', (req, res) => {
 });
 
   //Get list of all movies
-  app.get('/movies', function (req, res) {
+  app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
     Movies.find()
-      .then(function (movies) {
+      .then((movies) => {
         res.status(201).json(movies);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.error(error);
-        res.status(500).send('Error: ' + err);
+        res.status(500).send('Error: ' + error);
       });
   });
 
   //Get requests for a specific movie by title
-  app.get('/movies/:Title', (req, res) => {
-    Movies.findOne({Title: req.params.Title})
-    .then((movies) => {
-      res.json(movies);
+  app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Movies.findOne({ Title: req.params.Title })
+    .then(movie => {
+      res.json(movie);
     })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ', err);
+    .catch(error => {
+      console.log(error);
+      res.status(500).send('Error: ' + error);
     });
   });
 
@@ -64,31 +66,31 @@ app.get('/documentation.html', (req, res) => {
   });
 
   //Get a specific genre by name
-  app.get('/genres/:Name', (req, res) => {
-    Genres.findOne({ 'Genre.Name': req.params.Name})
-    .then((genre) => {
-      res.json(genres.Genre);
+  app.get('/genres/:Name', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Movies.findOne({ 'Genre.Name': req.params.Name })
+    .then(movie => {
+      res.json(movie.Genre);
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(err => {
+      console.log(err);
       res.status(500).send('Error: ' + err);
     });
   });
 
   //Get list of all directors
-  app.get('/directors', function (req, res) {
-    Directors.find()
-    .then(function (directors) {
-      res.status(201).json(directors);
+  app.get('/directors/:Name', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Movies.findOne({ 'Director.Name': req.params.Name })
+    .then(movie => {
+      res.json(movie.Director);
     })
-    .catch(function (err) {
-      console.error(err);
-      res.status(500).send('Error:' + err);
+    .catch(error => {
+      console.log(error);
+      res.status(500).send('Error: ' + error);
     });
   });
 
    //Get all users
-  app.get('/users', function (req, res) {
+  app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.find()
     .then(function (users) {
       res.status(201).json(users);
