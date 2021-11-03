@@ -1,16 +1,10 @@
 // Module list
-const
-    cors = require('cors');
-    bodyParser = require('body-parser'),
-    express = require('express'),
-    morgan = require('morgan'),
-    uuid = require('uuid'),
-    mongoose = require('mongoose'),
-    Models = require('./models.js'),
-    bcrypt = require('bcryptjs');
-const 
-    { update } = require('lodash'),
-    { check, validationResult } = require('express-validator');
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+const { check, validationResult } = require('express-validator');
 const app = express();
 
 // Module import
@@ -23,9 +17,10 @@ const Directors = Models.Director
 mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(morgan('common'));
-app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+const cors = require('cors');
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
@@ -37,13 +32,14 @@ app.use(cors({
   }
 }));
 
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 let auth = require('./auth')(app);
 const passport = require('passport');
 app.use(passport.initialize());
 require('./passport');
 
 // USE and GET requests
+
+app.use(morgan('common'));
 
 app.get('/', (req, res) => {
   res.send('Welcome to myFlix!');
@@ -233,19 +229,19 @@ app.put('/user/:Username', passport.authenticate('jwt', { session: false }), (re
 
 // Delete a user by username
 app.delete('/user/:Username',  passport.authenticate('jwt', { session: false }), (req, res) => {
-  Users.findOneAndRemove({ Username: req.params.Username })
-  .then((user) => {
-      if (!user) {
-          res.status(400).send(req.params.Username + ' was not found');
-      } else {
-          res.status(200).send(req.params.Username + ' was deleted.');
-      }
-  })
-  .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
+    Users.findOneAndRemove({ Username: req.params.Username })
+    .then((user) => {
+        if (!user) {
+            res.status(400).send(req.params.Username + ' was not found');
+        } else {
+            res.status(200).send(req.params.Username + ' was deleted.');
+        }
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });
   });
-});
 
 // Error handler
 app.use((err, req, res, next) => {
