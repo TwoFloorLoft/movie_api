@@ -1,1 +1,1 @@
-This is my attempt at a Movie App!
+This is my attempt to create a Movie App!
