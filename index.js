@@ -19,7 +19,7 @@ mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnified
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+let allowedOrigins = ['http://localhost:1234', 'http://localhost:8080', 'http://testsite.com'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -51,14 +51,14 @@ app.get('/documentation.html', (req, res) => {
 
 // Get list of all movies
 
-app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get("/movies", function (req, res) {
   Movies.find()
-    .then((movies) => {
+    .then(function (movies) {
       res.status(201).json(movies);
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.error(error);
-      res.status(500).send('Error: ' + error);
+      res.status(500).send("Error: " + error);
     });
 });
 
