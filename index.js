@@ -51,7 +51,7 @@ app.get('/documentation.html', (req, res) => {
 
 // Get list of all movies
 
-app.get("/movies", passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get("/movies", function (req, res) {
   Movies.find()
     .then(function (movies) {
       res.status(201).json(movies);
@@ -59,7 +59,7 @@ app.get("/movies", passport.authenticate('jwt', { session: false }), (req, res) 
     .catch(function (error) {
       console.error(error);
       res.status(500).send("Error: " + error);
-    })
+    });
 });
 
 // Get requests for a specific movie by title
