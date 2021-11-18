@@ -77,7 +77,7 @@ app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req
 
 // Get a list of all genres
 
-app.get('/genres', (req, res) => {
+app.get('/genres', passport.authenticate('jwt', { session: false }), (req, res) => {
   Genres.find()
     .then((directors) => {
       res.status(201).json(directors);
