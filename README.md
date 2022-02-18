@@ -5,4 +5,4 @@ Tech-stack:
 Node.js,
 Express,
 MongoDB
-The front end has been devloped in two versions - React (GitHub) and Angular (GitHub, url).
+The front end has been devloped in two versions - React and Angular
