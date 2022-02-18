@@ -1,3 +1,5 @@
+<h1>Movie API</h1>
+
 This is the server-side part of my movie API that contains endpoints for the information regarding movies from tha data base (titles, descriptions, directors, genres and visuals) as well as on directors, genres and users.
 
 Tech-stack:
